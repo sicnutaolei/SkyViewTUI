@@ -1,0 +1,132 @@
+/* Weather-TUI 样式表 v1.4 — 深色专业主题 + 左右分栏 + 右侧 GIF 播放器 */
+
+Screen {
+  background: #0b0e14;
+  color: #e0e8f0;
+}
+
+#location-bar {
+  height: 3;                 /* 城市名 + 时间两行 */
+  padding: 0 2;
+  border: round #3a4a5a;
+  margin: 1 1;
+}
+
+/* 城市名：中文大号加粗（蓝）/ 英文小号斜体（灰） */
+.city-cn {
+  text-style: bold;
+  color: #7fc1ff;
+}
+.city-en {
+  color: #8a9aa8;
+  text-style: italic;
+}
+
+/* 天气描述与温度强调 */
+.weather-desc {
+  text-style: bold;
+  color: #f0f4fa;
+}
+.temp-big {
+  text-style: bold;
+  color: #f5c542;
+}
+
+#tab-bar {
+  height: 3;
+  align: center middle;
+}
+
+/* 修复 Button 在深色主题下文字不可见 */
+#tab-bar Button {
+  color: #e0e8f0;
+  background: #1a2330;
+  border: tall #3a4a5a;
+  text-style: bold;
+  min-width: 12;
+}
+
+#tab-bar Button:hover {
+  background: #2a3a4a;
+}
+
+#tab-bar Button:focus {
+  background: #2a3a4a;
+}
+
+#tab-bar Button.-active {
+  background: #2a3a4a;
+  border: tall #7fc1ff;
+  color: #7fc1ff;
+}
+
+/* 卡片 / 视图容器美化（半透明深色） */
+.view-card {
+  margin: 1;
+  padding: 1;
+  border: solid #2a3a4a;
+  background: #141a22;
+}
+
+/* 主布局：左右分栏 */
+#main-layout {
+  height: 1fr;
+  width: 100%;
+}
+
+#weather-panel {
+  width: 65%;
+  height: 100%;
+  padding: 0 1;
+}
+
+#gif-player {
+  width: 35%;
+  height: 100%;
+  border-left: solid #3a4a5a;
+  background: #0f141c;
+}
+
+#view-current,
+#view-hourly,
+#view-daily {
+  height: 1fr;
+  padding: 1 2;
+}
+
+/* 每日视图文字颜色（修复不可见问题） */
+#view-daily {
+  color: #e0e8f0;
+  padding: 1;
+}
+
+#current-cards {
+  height: auto;
+}
+
+#hourly-table,
+#daily-text {
+  height: 1fr;
+}
+
+/* 自定义底部状态栏 */
+#status-bar {
+  height: 1;
+  background: #141a22;
+  color: #b0c0d0;
+  border-top: solid #3a4a5a;
+  padding: 0 2;
+  align: center middle;
+}
+
+.hidden {
+  display: none;
+}
+
+#error-message {
+  padding: 2 4;
+  border: round #b04a4a;
+  margin: 2 2;
+  color: #e0e8f0;
+  background: #1a1010;
+}

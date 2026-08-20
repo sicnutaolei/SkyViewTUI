@@ -1,0 +1,182 @@
+> 📖 简体中文文档：[README.zh-CN.md](README.zh-CN.md)
+
+# 🌤️ SkyViewTUI
+
+> A terminal-based weather dashboard with live GIF animations.
+
+[![Python Version](https://img.shields.io/badge/python-3.9+-blue.svg)](https://python.org)
+[![Textual](https://img.shields.io/badge/Textual-0.50+-green.svg)](https://textualize.io)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+---
+
+## 📖 What is SkyViewTUI?
+
+**SkyViewTUI** is a beautiful, keyboard-centric weather dashboard that runs right in your terminal. It displays:
+
+- **Current weather** (temperature, humidity, wind speed, feels-like)
+- **Hourly forecast** (next 12 hours)
+- **3-day daily forecast**
+- **Live GIF animations** in the sidebar (toggle with `n` key)
+
+Built with [Textual](https://textualize.io) and powered by [Open-Meteo](https://open-meteo.com) (no API key required!).
+
+---
+
+## ✨ Features
+
+- 🎨 **Rich TUI** — Beautiful dashboard layout with dynamic background colors based on weather conditions
+- 🌍 **Smart Location** — Auto-detect via IP, or manually specify a city via `--city` argument
+- 🔄 **Live GIF Playback** — Animated sidebar with cycle-through support (`n` key)
+- ⌨️ **Keyboard Shortcuts** — Navigate views with `1` (current), `2` (hourly), `3` (daily), `r` (refresh), `q` (quit)
+- 🌡️ **Configurable** — Settings stored in `~/.weather-config.toml` (city, temperature units, theme)
+- ☁️ **Weather Icons** — ASCII icons for all weather conditions (☀️🌧️❄️⛈️)
+- 📡 **WebDAV Sync** — Sync configuration to cloud (optional)
+
+---
+
+## 🚀 Installation
+
+### Prerequisites
+
+- Python 3.9 or higher
+- [pip](https://pip.pypa.io/)
+
+### Steps
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/sicnutaolei/SkyViewTUI.git
+cd SkyViewTUI
+
+# 2. Create and activate a virtual environment
+python -m venv .venv
+# On Windows:
+.venv\Scripts\activate
+# On Linux/macOS:
+source .venv/bin/activate
+
+# 3. Install dependencies
+pip install -e .
+```
+
+### Quick Start with pip
+
+```bash
+# Install directly from GitHub
+pip install git+https://github.com/sicnutaolei/SkyViewTUI.git
+skyviewtui --city "Beijing"
+```
+
+---
+
+## 🎮 Usage
+
+### Basic usage
+
+```bash
+# Auto-detect location via IP
+python -m weather_tui.app
+
+# Specify a city
+python -m weather_tui.app --city "Beijing"
+
+# Specify a city and a custom GIF
+python -m weather_tui.app --city "Deyang" --gif "path/to/your.gif"
+```
+
+### Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `1` | Current weather view |
+| `2` | Hourly forecast view |
+| `3` | 3-day daily forecast view |
+| `r` | Refresh weather data |
+| `n` or `→` | Next GIF animation |
+| `q` | Quit |
+
+---
+
+## ⚙️ Configuration
+
+SkyViewTUI stores your preferences in `~/.weather-config.toml`:
+
+```toml
+city = "Deyang"
+units = "celsius"          # or "fahrenheit"
+theme = "default"
+
+[webdav]
+url = "https://dav.jianguoyun.com/dav/"
+username = "your_email"
+password = "your_app_password"
+sync_enabled = false
+```
+
+---
+
+## 📂 Project Structure
+
+```
+SkyViewTUI/
+├── weather_tui/
+│   ├── app.py              # Main application entry
+│   ├── screens/
+│   │   └── main.py         # Main TUI screen
+│   ├── weather/
+│   │   ├── api.py          # Open-Meteo API calls
+│   │   ├── geocode.py      # City name → coordinates
+│   │   ├── ip_location.py  # IP-based location
+│   │   └── weather_icons.py # WMO code mapping
+│   ├── config/
+│   │   ├── manager.py      # Config read/write
+│   │   └── webdav.py       # WebDAV sync
+│   └── widgets/
+│       └── gif_player.py   # GIF animation player
+├── app.tcss                # Textual CSS styles
+├── pyproject.toml          # Dependencies and metadata
+├── .gitignore
+└── README.md
+```
+
+---
+
+## 🛠️ Dependencies
+
+- [Textual](https://textualize.io) — TUI framework
+- [httpx](https://www.python-httpx.org/) — Async HTTP client
+- [Pillow](https://python-pillow.org/) — Image processing
+- [chafa.py](https://github.com/hpjansson/chafa) — GIF to ANSI art conversion
+- [tomli-w](https://github.com/hukkin/tomli-w) — TOML writing
+- [webdavclient3](https://github.com/ezhov/webdavclient3) — WebDAV sync (optional)
+
+---
+
+## 📸 Screenshots
+
+*(Add your screenshot here: save as screenshot.png in the project root)*
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgements
+
+- [Open-Meteo](https://open-meteo.com/) for the free weather API
+- [Textual](https://textualize.io/) for the amazing TUI framework
+- [chafa](https://hpjansson.org/chafa/) for terminal image rendering
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+---
+
+**Made with ❤️ and Python**

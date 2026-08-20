@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+*.py[cod]
+.venv/
+venv/
+env/
+dist/
+build/
+*.egg-info/
+*.so
+*.pyd
+
+# 日志文件
+*.log
+gif_debug.log
+debug.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 配置文件（个人配置，不公开）
+.weather-config.toml
+
+# 临时 / 备份文件
+test.gif.py
+img_backup/
+*.bak
+
+# OS
+Thumbs.db
+.DS_Store
