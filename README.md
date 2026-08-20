@@ -102,9 +102,12 @@ python -m weather_tui.app --city "Deyang" --gif "path/to/your.gif"
 
 SkyViewTUI stores your preferences in `~/.weather-config.toml`:
 
+- **Windows**: `C:\Users\<YourName>\.weather-config.toml`
+- **Linux / macOS**: `/home/<your_name>/.weather-config.toml`
+
 ```toml
 city = "Deyang"
-units = "celsius"          # or "fahrenheit"
+units = "celsius"          # "celsius" or "fahrenheit"
 theme = "default"
 
 [webdav]
@@ -113,6 +116,37 @@ username = "your_email"
 password = "your_app_password"
 sync_enabled = false
 ```
+
+### Config options
+
+- `city`: default city used when `--city` is not provided. The app also updates this when you successfully switch cities.
+- `units`: temperature unit. Use `"celsius"` or `"fahrenheit"`.
+- `theme`: reserved for future themes; keep `"default"`.
+- `webdav.sync_enabled`: set to `true` to upload the config to WebDAV on exit.
+- `webdav.url/username/password`: your WebDAV server credentials (e.g. 坚果云 Jianguoyun).
+
+### WebDAV sync
+
+1. Fill in `[webdav]` with your credentials.
+2. Set `sync_enabled = true`.
+3. On every clean exit the config is uploaded to WebDAV.
+4. On another machine, run with `--sync-pull` to download the latest config before launching:
+
+```bash
+skyviewtui --sync-pull
+```
+
+You can also edit `.weather-config.toml` manually; the app reads it on startup.
+
+---
+
+## 🎞️ GIF Files
+
+SkyViewTUI renders a GIF in the right sidebar using [chafa](https://hpjansson.org/chafa/).
+
+- **Default GIF folder**: `weather_tui/img/`. Place any `.gif` files there. At startup the app plays the first one in sorted order; press `n` or `→` to cycle through all GIFs in that folder.
+- **Custom GIF**: start the app with `--gif path/to/your.gif`.
+- **Included GIFs**: the repository ships with sample GIFs under `weather_tui/img/`, so the animation works immediately after `pip install -e .`.
 
 ---
 
@@ -132,12 +166,17 @@ SkyViewTUI/
 │   ├── config/
 │   │   ├── manager.py      # Config read/write
 │   │   └── webdav.py       # WebDAV sync
-│   └── widgets/
-│       └── gif_player.py   # GIF animation player
+│   ├── widgets/
+│   │   └── gif_player.py   # GIF animation player
+│   └── img/                # Default GIF animations
+│       ├── 01.gif
+│       └── ...
 ├── app.tcss                # Textual CSS styles
 ├── pyproject.toml          # Dependencies and metadata
+├── screenshot.webp         # App screenshot
 ├── .gitignore
-└── README.md
+├── README.md
+└── README.zh-CN.md
 ```
 
 ---
@@ -155,7 +194,7 @@ SkyViewTUI/
 
 ## 📸 Screenshots
 
-*(Add your screenshot here: save as screenshot.png in the project root)*
+![SkyViewTUI running in PowerShell](screenshot.webp)
 
 ---
 

@@ -102,9 +102,12 @@ python -m weather_tui.app --city "Deyang" --gif "path/to/your.gif"
 
 SkyViewTUI 会将你的偏好保存在 `~/.weather-config.toml`：
 
+- **Windows**：`C:\Users\<你的用户名>\.weather-config.toml`
+- **Linux / macOS**：`/home/<你的用户名>/.weather-config.toml`
+
 ```toml
 city = "Deyang"
-units = "celsius"          # 或 "fahrenheit"
+units = "celsius"          # "celsius" 或 "fahrenheit"
 theme = "default"
 
 [webdav]
@@ -113,6 +116,37 @@ username = "your_email"
 password = "your_app_password"
 sync_enabled = false
 ```
+
+### 配置项说明
+
+- `city`：未提供 `--city` 时的默认城市；成功切换城市后应用也会自动更新该值。
+- `units`：温度单位，可选 `"celsius"`（摄氏度）或 `"fahrenheit"`（华氏度）。
+- `theme`：预留主题字段，目前保持 `"default"`。
+- `webdav.sync_enabled`：设为 `true` 可在退出时把配置上传到 WebDAV。
+- `webdav.url/username/password`：WebDAV 服务器凭据（例如坚果云）。
+
+### WebDAV 同步
+
+1. 在 `[webdav]` 中填写账号信息。
+2. 设置 `sync_enabled = true`。
+3. 每次正常退出（按 `q`）都会自动上传配置。
+4. 在另一台机器上，先用 `--sync-pull` 拉取最新配置再启动：
+
+```bash
+skyviewtui --sync-pull
+```
+
+你也可以手动编辑 `.weather-config.toml`；应用下次启动时会读取。
+
+---
+
+## 🎞️ GIF 文件
+
+SkyViewTUI 使用 [chafa](https://hpjansson.org/chafa/) 在右侧边栏渲染 GIF 动画。
+
+- **默认 GIF 目录**：`weather_tui/img/`。把 `.gif` 文件放在这里，启动时应用会按文件名排序播放第一张；按 `n` 或 `→` 可循环切换该目录下所有 GIF。
+- **自定义 GIF**：启动时加上 `--gif path/to/your.gif`。
+- **自带 GIF**：仓库已在 `weather_tui/img/` 下附带示例 GIF，执行 `pip install -e .` 后动画直接可用。
 
 ---
 
@@ -132,12 +166,17 @@ SkyViewTUI/
 │   ├── config/
 │   │   ├── manager.py      # 配置读写
 │   │   └── webdav.py       # WebDAV 同步
-│   └── widgets/
-│       └── gif_player.py   # GIF 动画播放器
+│   ├── widgets/
+│   │   └── gif_player.py   # GIF 动画播放器
+│   └── img/                # 默认 GIF 动画
+│       ├── 01.gif
+│       └── ...
 ├── app.tcss                # Textual 样式表
 ├── pyproject.toml          # 依赖与元数据
+├── screenshot.webp         # 应用截图
 ├── .gitignore
-└── README.md
+├── README.md
+└── README.zh-CN.md
 ```
 
 ---
@@ -155,7 +194,7 @@ SkyViewTUI/
 
 ## 📸 截图
 
-*（在此添加你的截图：将图片保存为项目根目录下的 screenshot.png）*
+![SkyViewTUI 在 PowerShell 中运行](screenshot.webp)
 
 ---
 
